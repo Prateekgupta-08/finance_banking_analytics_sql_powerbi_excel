@@ -131,18 +131,6 @@ The dashboard helps answer:
 
 ---
 
-## Dashboard Screenshots
-
-### Executive Summary Dashboard
-
-![Dashboard Screenshot](images/dashboard1.png)
-
-### Transaction Detail Dashboard
-
-![Dashboard Screenshot](images/dashboard2.png)
-
----
-
 ## Skills Demonstrated
 
 - Business Requirement Gathering
@@ -155,6 +143,14 @@ The dashboard helps answer:
 - Business Intelligence Reporting
 
 ---
+
+## Dashboard Screenshots
+
+### Executive Summary Dashboard
+<img width="1658" height="932" alt="Screenshot 2026-06-07 033617" src="https://github.com/user-attachments/assets/7ab10553-d161-4e1b-b6cb-335deddb6de1" />
+
+### Transaction Detail Dashboard
+<img width="1654" height="918" alt="Screenshot 2026-06-07 033656" src="https://github.com/user-attachments/assets/36eed0bf-f7f8-43a0-a440-13310b2d36ca" />
 
 ## Author
 
