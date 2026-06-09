@@ -1,9 +1,9 @@
 -- ================================================================
 --  FINANCE ANALYTICS PROJECT — MySQL Script
---  Author       : [Your Name]
+--  Author       : Prateek Gupta
 --  Dataset      : 50,069 Transactions | 5,000 Customers | 2023-2025
 --  Tool         : MySQL Workbench
---  GitHub Repo  : github.com/your-username/finance-analytics
+--  GitHub Repo  : github.com/Prateekgupta-08/finance-analytics
 -- ================================================================
 --  HOW TO USE
 --  1. Run Section 0 to create DB and tables.
