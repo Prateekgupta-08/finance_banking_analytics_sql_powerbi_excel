@@ -43,6 +43,7 @@ This dashboard provides a centralized reporting solution to address these challe
 - Data Modeling
 - Data Visualization
 - MYSQL
+- Excel
 ---
 
 ## Key KPIs
