@@ -2,7 +2,7 @@
 
 ## Overview
 
-Developed an interactive Finance Analytics Dashboard in Power BI to analyze financial transactions, customer behavior, fees, taxes, and transaction performance across multiple customer segments and regions.
+Developed an interactive Finance Analytics Dashboard for Banking Partner in Power BI to analyze financial transactions, customer behavior, fees, taxes, and transaction performance across multiple customer segments and regions.
 
 The dashboard enables stakeholders to monitor key financial KPIs, identify transaction trends, evaluate profitability, and make data-driven business decisions through interactive visualizations and drill-down capabilities.
 
