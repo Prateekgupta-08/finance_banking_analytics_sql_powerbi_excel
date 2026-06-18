@@ -157,7 +157,7 @@ The dashboard helps answer:
 
 **Prateek**
 
-Data & BI Analyst | SQL | Power BI | Excel | Salesforce CRM
+Data Analyst | SQL | Power BI | Excel | Salesforce CRM
 
 LinkedIn: www.linkedin.com/in/prateek-k-gupta/
 
