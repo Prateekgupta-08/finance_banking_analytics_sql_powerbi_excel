@@ -1,150 +1,94 @@
-# 📊 Finance Analytics Dashboard | Power BI
+# 💰 Finance & Banking Transaction Analytics | SQL + Power BI + Excel
 
-## Overview
-
-Developed an interactive Finance Analytics Dashboard for Banking Partner in Power BI to analyze financial transactions, customer behavior, fees, taxes, and transaction performance across multiple customer segments and regions.
-
-The dashboard enables stakeholders to monitor key financial KPIs, identify transaction trends, evaluate profitability, and make data-driven business decisions through interactive visualizations and drill-down capabilities.
+**Turning 50,000+ raw bank transaction records into a decision-ready analytics layer for finance and operations leadership.**
 
 ---
 
-## Business Problem
+## 📌 Business Problem
 
-Financial organizations often struggle to:
+Financial organizations sit on huge volumes of transaction data (payments, transfers, EMIs, deposits) but that data is usually locked in raw operational tables — nobody outside IT/data engineering can answer basic business questions without writing SQL themselves:
 
-- Monitor transaction growth and performance
-- Track successful vs failed transactions
-- Analyze customer segment contributions
-- Compare regional performance
-- Evaluate transaction profitability
-- Understand customer demographics
-- Measure Year-over-Year (YoY) growth
+- Is transaction volume growing or shrinking?
+- How much revenue is at risk from failed transactions?
+- Which customer segments and states actually drive the business?
+- Are fees and tax collections keeping pace with volume?
+- Where is fraud risk concentrated?
 
-This dashboard provides a centralized reporting solution to address these challenges.
+**Without a reporting layer, these questions get answered late (or not at all), and decisions get made on gut feel instead of data.**
 
----
-
-## Project Objectives
-
-- Monitor financial KPIs in real time
-- Analyze transaction trends and patterns
-- Identify top-performing customer segments
-- Evaluate state-wise financial performance
-- Track fees and tax collections
-- Support strategic business decision-making
+I built a MySQL → Power BI pipeline to close that gap: raw transaction and customer tables in, an interactive executive dashboard out.
 
 ---
 
-## Tools Used
+## 🎯 What I Did
 
-- Power BI
-- Power Query
-- DAX
-- Data Modeling
-- Data Visualization
-- MYSQL
-- Excel
----
-
-## Key KPIs
-
-| KPI | Description |
-|------|------------|
-| Total Amount | Total transaction value processed |
-| Total Transactions | Total number of transactions |
-| Average Transaction Value | Average amount per transaction |
-| Total Fees | Total fees collected |
-| Total Tax | Total tax generated |
-| YoY Growth | Year-over-Year performance comparison |
+1. **Modeled the data** in MySQL — a `customers` table (demographics, segment, income) joined to a `finance_transactions` table (50,069 transactions, 15 fields including amount, fees, tax, status, fraud flag, risk score).
+2. **Wrote 20 analytical SQL queries** covering totals, trends, segment/state rankings, transaction-type profitability, fraud incidence, and YoY growth (`finance_analytics.sql`).
+3. **Built a Power BI dashboard** on top with drill-through to transaction-level detail and dynamic filters (year, occupation, segment).
+4. **Delivered a recommendations deck** translating the findings into business actions.
 
 ---
 
-## Dashboard Features
+## 📊 Impact — The Numbers
 
-### Transaction Trend Analysis
-- Monthly transaction amount tracking
-- Trend and seasonality analysis
+*(Pulled directly from the transaction dataset, Jan 2023 – Apr 2026)*
 
-### Transaction Status Analysis
-- Success vs Failed vs Pending transactions
-- Operational performance monitoring
+| KPI | Value |
+|---|---|
+| **Total transaction value processed** | **₹45.6 crore (₹456.1M)** |
+| **Total transactions analyzed** | **50,069** |
+| **Average transaction value** | ₹9,110 |
+| **Total fees collected** | ₹7.27 lakh |
+| **Total tax collected** | ₹1.31 lakh |
+| **Transaction success rate** | **85.7%** |
+| **Failed transaction rate** | 10.2% (**₹4.75 crore in failed-transaction value**) |
+| **Pending transaction rate** | 4.1% |
+| **Flagged fraud rate** | 1.26% (632 transactions) |
 
-### Customer Segment Analysis
-- Retail
-- Premium
-- SME
-- Corporate
-- Wealth
-
-### Regional Performance Analysis
-- State-wise transaction comparison
-- Top-performing regions identification
-
-### Transaction Type Analysis
-- Amount
-- Fees
-- Tax
-- Transaction Count
-
-Transaction Types:
-- Bill Payment
-- Card Payment
-- Deposit
-- Fee Charge
-- Interest Credit
-- Investment
-- Loan EMI
-- Refund
-- Transfer
-- Withdrawal
-
-### Customer Demographics
-- Gender-based transaction analysis
-- Customer participation insights
-
-### Drill-Through Reports
-- Detailed transaction-level records
-- Interactive exploration of underlying data
+### Where the value concentrates
+- **Retail is the volume engine:** 54.4% of all transaction value (₹24.8 crore) and 54% of transaction count comes from the Retail segment — more than the other four segments combined.
+- **Top 5 states drive ~57% of value:** Maharashtra (₹6.83 cr), Karnataka (₹5.29 cr), Gujarat (₹5.01 cr), Tamil Nadu (₹4.49 cr), Uttar Pradesh (₹4.36 cr).
+- **Loan EMIs and Transfers are the two biggest transaction types by value** — ₹13.1 crore and ₹12.1 crore respectively, together ~55% of total volume.
+- **Segment labels don't predict ticket size:** average transaction value is nearly flat across Retail, Premium, SME, Corporate, and Wealth (₹8,980–₹9,155) — the segments differ by *volume*, not deal size. This is a real finding: it tells the business that segment strategy should focus on transaction frequency/retention, not upselling bigger tickets.
+- **Data quality finding:** the raw `channel` field had inconsistent labels (e.g. stray whitespace, "M@bile App" vs "Mobile App") that would silently fragment a "channel performance" view if not cleaned — flagged and standardized during modeling.
 
 ---
 
-## Filters Available
+## 🧭 How This Drives Business Decisions
 
-Users can dynamically filter the dashboard using:
-
-- Year
-- Occupation
-- Category
-- Dynamic Measure Selection
-
----
-
-## Business Insights Delivered
-
-The dashboard helps answer:
-
-- Which customer segment generates the highest revenue?
-- Which states contribute the most transaction value?
-- What is the transaction success rate?
-- Which transaction types are most profitable?
-- How are fees and taxes trending over time?
-- What demographic groups contribute most to transactions?
+| Business Question | Dashboard Answer | Decision It Enables |
+|---|---|---|
+| Are we losing revenue to failed transactions? | 10.2% of transactions fail, representing ₹4.75 cr in value | Prioritize root-cause analysis on failure reasons/channels before scaling volume further |
+| Which segment should Sales/Marketing focus retention budget on? | Retail = 54% of value but flat average ticket size | Focus on transaction *frequency* and engagement, not just deal size, for Retail |
+| Where should regional teams concentrate effort? | Top 5 states = 57% of value | Concentrate account management and support resources in those states first |
+| Which transaction types matter most to the P&L? | Loan EMI + Transfers = 55% of volume | Prioritize uptime/reliability investment on these transaction rails |
+| Is fraud risk material? | 1.26% flagged, concentrated in specific risk-score bands | Set risk-score thresholds for manual review vs. auto-approval |
 
 ---
 
-## Skills Demonstrated
+## 🛠 Tools & Technologies
+- **MySQL** — data modeling, joins, aggregation, window functions (RANK)
+- **Power BI** — data modeling, DAX, drill-through, dynamic KPI cards
+- **Power Query** — data cleaning and shaping
+- **Excel** — supporting analysis
 
-- Business Requirement Gathering
-- Financial Data Analysis
-- KPI Development
-- Data Modeling
-- DAX Calculations
-- Dashboard Design
-- Data Visualization
-- Business Intelligence Reporting
+## 📂 Repository Structure
+```
+finance_banking_analytics_sql_powerbi_excel/
+│
+├── README.md
+├── finance_analytics.sql                          # 20 analytical queries
+├── customers.csv                                  # 5,000 customer records
+├── finance_transactions.csv                       # 50,069 transaction records
+├── Finance_Analytics.pbix                          # Power BI dashboard
+├── Finance_Banking_Analytics.pdf                   # Dashboard export
+└── Finance_Analytics_Insights.pptx                 # Recommendations deck
+```
+
+## 📈 Skills Demonstrated
+SQL (joins, aggregation, window functions) · Data Modeling · DAX · Power Query · KPI Development · Financial Analytics · Data Quality/Cleaning · Business Storytelling
 
 ---
-
 ## Dashboard Screenshots
 
 ### Executive Summary Dashboard
@@ -153,12 +97,11 @@ The dashboard helps answer:
 ### Transaction Detail Dashboard
 <img width="1654" height="918" alt="Screenshot 2026-06-07 033656" src="https://github.com/user-attachments/assets/36eed0bf-f7f8-43a0-a440-13310b2d36ca" />
 
-## Author
+### 👨‍💻 About Me
+**Prateek Gupta** — Data Analyst | SQL · Python · Excel · Power BI · Financial & Healthcare Analytics
+- 📧 prateekgupta545@gmail.com 
+- 💼 [LinkedIn](https://linkedin.com/in/prateek-k-gupta)
+- 🐙 [GitHub](https://github.com/Prateekgupta-08)
 
-**Prateek**
+⭐ If this project is useful to you, consider starring the repo!
 
-Data Analyst | SQL | Power BI | Excel | Salesforce CRM
-
-LinkedIn: www.linkedin.com/in/prateek-k-gupta/
-
-GitHub: https://github.com/Prateekgupta-08/
